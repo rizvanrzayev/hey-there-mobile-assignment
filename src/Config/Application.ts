@@ -3,6 +3,7 @@ type Config = {
   randomUserMaxDistanceKm: number;
   randomUserMinDistanceKm: number;
   randomUserCount: number;
+  defaultUnits: string;
 };
 
 const ApplicationConfig: Config = {
@@ -11,6 +12,7 @@ const ApplicationConfig: Config = {
   randomUserMaxDistanceKm: 20,
   randomUserMinDistanceKm: 1,
   randomUserCount: 50,
+  defaultUnits: 'kilometers',
 };
 
 export default ApplicationConfig;

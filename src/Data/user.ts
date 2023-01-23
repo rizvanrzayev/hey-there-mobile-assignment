@@ -2,14 +2,13 @@ import ApplicationConfig from '../Config/Application';
 import {
   createDestinationPointFromDistance,
   getDistanceFromPoint,
-} from '../Containers/utils/map';
+} from '../Utils/map';
 
 export interface User {
   id: string;
   name: string;
   coordinates: number[];
   distanceFromMe: number;
-  //   messages: Message[];
 }
 
 export const MY_USER_DATA: User = {

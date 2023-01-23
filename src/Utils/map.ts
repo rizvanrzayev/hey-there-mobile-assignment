@@ -1,6 +1,8 @@
 import {Feature} from '@turf/turf';
-import {User} from '../../Data/user';
+import {User} from '../Data/user';
 import * as turf from '@turf/turf';
+import ApplicationConfig from '../Config/Application';
+
 /**
  * Performs the even-odd-rule Algorithm (a raycasting algorithm) to find out whether a point is in a given polygon.
  * This runs in O(n) where n is the number of edges of the polygon.
@@ -39,8 +41,6 @@ export const createUserPinFeature = (user: User): Feature => ({
   },
 });
 
-const DEFAULT_UNITS = 'kilometers';
-
 export const createDestinationPointFromDistance = (
   point: number[],
   distanceKm: number,
@@ -49,7 +49,7 @@ export const createDestinationPointFromDistance = (
   const distance = distanceKm;
   const bearing = Math.floor(Math.random() * 360);
   const options: turf.helpers.Properties = {
-    units: DEFAULT_UNITS,
+    units: ApplicationConfig.defaultUnits,
   };
   const destination = turf.destination(turfPoint, distance, bearing, options);
   return destination.geometry.coordinates;
@@ -58,7 +58,9 @@ export const createDestinationPointFromDistance = (
 export const getDistanceFromPoint = (from: number[], to: number[]): number => {
   const fromTurf = turf.point(from);
   const toTurf = turf.point(to);
-  const options: turf.helpers.Properties = {units: DEFAULT_UNITS};
+  const options: turf.helpers.Properties = {
+    units: ApplicationConfig.defaultUnits,
+  };
 
   const distance = turf.distance(fromTurf, toTurf, options);
   return distance;
